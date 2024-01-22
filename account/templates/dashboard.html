@@ -1,0 +1,74 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .dashboard-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        .dashboard-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .dashboard-buttons button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .dashboard-buttons button:hover {
+            background-color: #45a049;
+        }
+
+        .welcome-message {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>ShopBooks</h2>
+        {% if user.is_authenticated %}
+            <p class="welcome-message">Welcome, {{ user.first_name }}! You are logged in.</p>
+        {% else %}
+            <div class="dashboard-buttons">
+                <form method="post" action="{% url 'dashboard' %}">
+                    {% csrf_token %}
+                    <button type="submit" name="action" value="login">Login</button>
+                </form>
+                <form method="post" action="{% url 'dashboard' %}">
+                    {% csrf_token %}
+                    <button type="submit" name="action" value="register">Register</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Подверждение почты</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .header {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+        .content {
+            padding: 20px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="conteiner">
+        <div class="header">
+            <h2>Здраствуйте</h2>
+        </div>
+        <div class="content">
+            <p>Подвердите почту, чтобы завершить процесс активации</p>
+            <p>
+                <a class="button" href="{{ activation_url }}">Нажми сюда</a>
+            </p>
+        </div>
+        <div class="footer">
+            <p>С уважением,</p>
+            <p>Shop_ADA</p>
+        </div>
+    </div>
+</body>
+</html>
