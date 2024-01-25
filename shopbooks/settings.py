@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -145,6 +146,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -190,14 +195,14 @@ CSRF_TRUSTED_ORIGINS = ['https://5f90-46-251-195-218.ngrok-free.app']
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",
-        "OPTION": {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
+        "LOCATION": "redis://redis:6379",
+        # "OPTIONS": {
+        #     'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        # }
     }
 }
 
-REDIS_HOST = '127.0.0.1'
+REDIS_HOST = 'redis'
 REDIS_PORT = '6379'
 
 #Celery Settings
@@ -232,13 +237,8 @@ LOGGING = {
     "handlers": {
         "console": {
             "class": "logging.StreamHandler",
-            'formatter': 'main_format'},
-
-        "file": {
-            'class': 'logging.FileHandler',
-            'formatter': 'main_format',
-            'filename': '/home/deniz/Desktop/bookshop/log.log',
-        }
+            'formatter': 'main_format'
+            },
     },
 
     "loggers": {
