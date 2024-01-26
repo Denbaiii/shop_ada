@@ -1,0 +1,7 @@
+location /static/ {
+        root /usr/src/app;
+    }
+
+location /media/ {
+        root /usr/src/app;
+    }

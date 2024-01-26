@@ -246,10 +246,6 @@ LOGGING = {
             "handlers": ["console"],
             "level": "DEBUG",
         },
-        'product': {
-            'handlers': ['file'],
-            'level': 'DEBUG'
-        }
     },
 }
 

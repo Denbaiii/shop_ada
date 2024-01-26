@@ -45,7 +45,7 @@ class ActivationView(GenericAPIView):
         serializer.save()
         return Response('Успешно активирован!', status=200)
 
-class LoginView(TokenObtainPairView):
+class   LoginView(TokenObtainPairView):
     permission_classes = (permissions.AllowAny,)
 
 class UserListView(ListAPIView):

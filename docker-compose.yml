@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   web:
@@ -16,6 +16,11 @@ services:
       - db
       - redis
       - migration
+    env_file:
+      - .env
+    environment:
+      - VIRTUAL_HOST=shopdenada.freemyip.com
+      - LETSENCRYPT_HOST=shopdenada.freemyip.com
 
   db:
     image: postgres
@@ -62,10 +67,27 @@ services:
     volumes:
       - static_volume:/usr/src/app/static
       - media_volume:/usr/src/app/media
+      - volume certs:/etc/nginx/certs 
+      - volume vhost:/etc/nginx/vhost.d 
+      - volume html:/usr/share/nginx/html 
+      - volume /var/run/docker.sock:/tmp/docker.sock:ro 
     depends_on:
       - web
+
+  acme_companion:
+    image: nginxproxy/acme-companion:2.2
+    container_name: acme_companion
+    volumes_from:
+      - nginx
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - acme:/etc/acme.sh
 
 volumes:
   postgres_data:
   static_volume:
   media_volume:
+  certs:
+  vhost:
+  html:
+  acme:
